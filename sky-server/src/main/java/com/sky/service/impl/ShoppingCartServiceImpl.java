@@ -37,7 +37,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
 
         //判断当前加入购物车中的商品是否已经存在
-        List<ShoppingCart> shoppingCarts = shoppingCartMapper.list(shoppingCartDTO);
+        List<ShoppingCart> shoppingCarts = shoppingCartMapper.list(shoppingCart);
         if(shoppingCarts != null && shoppingCarts.size() > 0){
             //如果存在，只需数量加一
             shoppingCarts.get(0).setNumber(shoppingCarts.get(0).getNumber() + 1);
@@ -61,5 +61,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCartMapper.insert(shoppingCart);
         }
 
+    }
+
+    /**
+     * 查看购物车
+     * @return
+     */
+    public List<ShoppingCart> list() {
+        Long userId = BaseContext.getCurrentId();
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .userId(userId)
+                .build();
+        List<ShoppingCart> shoppingCarts = shoppingCartMapper.list(shoppingCart);
+        return shoppingCarts;
+    }
+
+    /**
+     * 清空用户购物车
+     */
+    public void clean() {
+        Long userId = BaseContext.getCurrentId();
+        shoppingCartMapper.deletByUserId(userId);
     }
 }
