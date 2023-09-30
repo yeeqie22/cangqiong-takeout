@@ -24,4 +24,10 @@ public interface ShoppingCartService {
      * 清空用户购物车
      */
     void clean();
+    /**
+     * 再来一单
+     *
+     * @param id
+     */
+    void repetition(Long id);
 }

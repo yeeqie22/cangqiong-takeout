@@ -4,6 +4,7 @@ import com.sky.dto.OrdersSubmitDTO;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.OrderService;
+import com.sky.service.ShoppingCartService;
 import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
 import io.swagger.annotations.Api;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private ShoppingCartService shoppingCartService;
     /**
      * 用户下单
      * @param ordersSubmitDTO
@@ -66,6 +69,18 @@ public class OrderController {
     @ApiOperation("取消订单")
     public Result cancel(@PathVariable("id") Long id) throws Exception {
         orderService.userCancelById(id);
+        return Result.success();
+    }
+    /**
+     * 再来一单
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/repetition/{id}")
+    @ApiOperation("再来一单")
+    public Result repetition(@PathVariable Long id) {
+        shoppingCartService.repetition(id);
         return Result.success();
     }
 }

@@ -31,4 +31,10 @@ public interface OrderMapper {
      */
     //TODO 补全sql语句
     void update(Orders orders);
+    /**
+     * 根据状态统计订单数量
+     * @param status
+     */
+    @Select("select count(id) from orders where status = #{status}")
+    Integer countStatus(Integer status);
 }
