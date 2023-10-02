@@ -38,6 +38,7 @@ public class OrderController {
         PageResult pageResult = orderService.conditionSearch(ordersPageQueryDTO);
         return Result.success(pageResult);
     }
+
     /**
      * 各个状态的订单数量统计
      *
@@ -49,6 +50,7 @@ public class OrderController {
         OrderStatisticsVO orderStatisticsVO = orderService.statistics();
         return Result.success(orderStatisticsVO);
     }
+
     /**
      * 订单详情
      *
@@ -61,6 +63,7 @@ public class OrderController {
         OrderVO orderVO = orderService.details(id);
         return Result.success(orderVO);
     }
+
     /**
      * 接单
      *
@@ -86,5 +89,5 @@ public class OrderController {
     }
 
     // TODO 接单、拒单、派送订单、完成订单和校验收货地址业务没开发
-
+    // TODO 客户催单 来单提醒
 }

@@ -49,4 +49,12 @@ public interface OrderMapper {
      */
     @Select("select * from orders where status = #{status} and order_time < #{time}")
     List<Orders> getByStatusAndOrderTimeLt(Integer status, LocalDateTime time);
+
+    /**
+     * 获取当天营业额
+     * @param beginTime
+     * @param endTime
+     * @return
+     */
+    Double sumByTimeAndStatus(LocalDateTime beginTime, LocalDateTime endTime);
 }
