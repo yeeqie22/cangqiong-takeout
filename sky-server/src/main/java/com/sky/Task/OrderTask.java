@@ -22,7 +22,7 @@ public class OrderTask {
     @Scheduled(cron = "0 15 10 ? * *")
     public void timeOutOrder(){
         log.info("定时处理超时订单：{}", LocalDateTime.now());
-        LocalDateTime time = LocalDateTime.now().plusMinutes(-100);
+        LocalDateTime time = LocalDateTime.now().plusDays(-100);
         List<Orders> ordersList = orderMapper.getByStatusAndOrderTimeLt(Orders.PENDING_PAYMENT, time);
         if(ordersList != null && ordersList.size() > 0){
             for (Orders orders : ordersList) {

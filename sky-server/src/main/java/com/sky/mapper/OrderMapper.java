@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -57,4 +58,11 @@ public interface OrderMapper {
      * @return
      */
     Double sumByTimeAndStatus(LocalDateTime beginTime, LocalDateTime endTime);
+
+    /**
+     * 根据订单创建时间和状态获取订单数目
+     * @param map
+     * @return
+     */
+    Integer getOrdersCountByMap(Map map);
 }
